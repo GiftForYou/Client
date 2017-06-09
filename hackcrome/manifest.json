@@ -12,6 +12,9 @@
     "default_title": "HackChrome",
     "default_popup": "popup.html"
   },
+  "background":{
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
       "matches": ["http://*/*","https://*/*"],
