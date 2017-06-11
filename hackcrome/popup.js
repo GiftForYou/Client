@@ -1,11 +1,15 @@
+
 function onAnalize(){
+
+
+
   chrome.tabs.getSelected(null,function (tab) {
     var myNewUrl = tab.url+"/likes_all";
     chrome.tabs.update(tab.id, {url: myNewUrl});
     chrome.tabs.onUpdated.addListener(function(tabId , info) {
       if (info.status == "complete") {
         chrome.tabs.sendMessage(tab.id, {text: 'start'}, function (w) {
-          console.log(w.maintopic)
+          console.log(w)
 
           var sum = w.maintopic.reduce(function (initial, data) {
             let tmp = initial
@@ -34,27 +38,35 @@ function onAnalize(){
               tableRow1.appendChild(tableDataName)
               let tableDataCount = document.createElement("TD")
               let persen = Math.floor((obj.count / sum) * 100)
-              console.log(persen,'%')
               tableDataCount.appendChild(document.createTextNode(`${persen}%`))
               tableRow1.appendChild(tableDataCount)
               table.appendChild(tableRow1)
             }
           })
 
-          console.log(table)
           document.getElementById("myResult").appendChild(table)
           // document.getElementById("result").innerHTML = JSON.stringify(w);
+          fetch('http://localhost:3000/recomendation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              recomendation: w.maintopic,
+            })
+          })
         });
       }
     });
-
   })
 }
 
 document.addEventListener('DOMContentLoaded',function () {
   //Analize -- baru maintopic
   document.getElementById("analize").addEventListener("click", onAnalize);
-
   //Rekomendasi--- kirim data result ke server, dapetin barang rekomendasinya
   //document.getElementById("recomendation").addEventListener("click"................
 })
+
+
+
