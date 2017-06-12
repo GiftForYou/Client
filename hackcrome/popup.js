@@ -6,7 +6,7 @@ function onAnalize(){
     chrome.tabs.onUpdated.addListener(function(tabId , info) {
       if (info.status == "complete") {
         chrome.tabs.sendMessage(tab.id, {text: 'start'}, function (w) {
-          console.log(w)
+          // console.log(w)
 
           var sum = w.maintopic.reduce(function (initial, data) {
             let tmp = initial
@@ -44,15 +44,67 @@ function onAnalize(){
           document.getElementById("myResult").appendChild(table)
           // document.getElementById("result").innerHTML = JSON.stringify(w);
 
+          let dummy = {"maintopic": [
+                    {
+                        "name": "semua suka",
+                        "count": 119
+                    },
+                    {
+                        "name": "film",
+                        "count": 2
+                    },
+                    {
+                        "name": "atlet",
+                        "count": "4"
+                    }
+                ],
+                "detail": [
+                    {
+                        "name": "semua suka",
+                        "data": [
+                            "chealsea",
+                            "nasi goreng",
+                            "john terry fansclub",
+                            "chealsea tangerang",
+                            "chealsea indo",
+                            "fast on farius 8",
+                            "falcon picture"
+                        ]
+                    },
+                    {
+                        "name": "film",
+                        "data": [
+                            "fast on farius 8",
+                            "falcon picture"
+                        ]
+                    },
+                    {
+                        "name": "atlet",
+                        "data": [
+                            "chealsea",
+                            "john terry fansclub",
+                            "chealsea tangerang",
+                            "chealsea indo"
+                        ]
+                    }
+                ]
+            }
+
           fetch('http://localhost:3000/recomendation', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              recomendation: w.maintopic,
+              data: dummy,
             })
+          }).then((response)=>{
+            return response.json()
+          }).then(data=>{
+            document.getElementById("showRecomendation").append(JSON.stringify(data.hasil))
           })
+
+
         });
       }
     });
