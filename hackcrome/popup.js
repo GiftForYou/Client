@@ -1,8 +1,5 @@
 
 function onAnalize(){
-
-
-
   chrome.tabs.getSelected(null,function (tab) {
     var myNewUrl = tab.url+"/likes_all";
     chrome.tabs.update(tab.id, {url: myNewUrl});
@@ -46,6 +43,7 @@ function onAnalize(){
 
           document.getElementById("myResult").appendChild(table)
           // document.getElementById("result").innerHTML = JSON.stringify(w);
+
           fetch('http://localhost:3000/recomendation', {
             method: 'POST',
             headers: {
