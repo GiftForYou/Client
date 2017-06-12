@@ -1,4 +1,3 @@
-
 // chrome.browserAction.onClicked.addListener(function(port){
 //   // var newURL = "http://stackoverflow.com/";
 //   // chrome.tabs.create({ url: newURL });

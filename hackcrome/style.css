@@ -2,7 +2,6 @@ div {
   height: 600px;
   width: 800px;
 }
-
 table, th, td {
     text-align: center;
     border: 1px solid black;
@@ -12,4 +11,3 @@ table, th, td {
   height: 100px;
   width: 800px;
 }
-

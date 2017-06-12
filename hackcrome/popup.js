@@ -1,4 +1,3 @@
-
 function onAnalize(){
   chrome.tabs.getSelected(null,function (tab) {
     var myNewUrl = tab.url+"/likes_all";
@@ -114,9 +113,7 @@ function onAnalize(){
 document.addEventListener('DOMContentLoaded',function () {
   //Analize -- baru maintopic
   document.getElementById("analize").addEventListener("click", onAnalize);
+
   //Rekomendasi--- kirim data result ke server, dapetin barang rekomendasinya
   //document.getElementById("recomendation").addEventListener("click"................
 })
-
-
-
