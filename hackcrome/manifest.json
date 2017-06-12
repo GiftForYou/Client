@@ -18,8 +18,8 @@
   "content_scripts": [
     {
       "matches": ["http://*/*","https://*/*"],
-      "js": ["thirdparty/jquery-3.2.1.min.js","myScript.js"]
+      "js": ["myScript.js"]
     }
   ],
-  "permissions": ["tabs","activeTab","storage"]
+  "permissions": ["tabs","activeTab"]
 }
