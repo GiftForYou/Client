@@ -1,2 +1,2 @@
 # Client
-For CLient Side. Server next repo
+For CLient Side. Server next repos
