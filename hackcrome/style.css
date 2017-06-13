@@ -1,11 +1,34 @@
-div {
-  height: 600px;
-  width: 800px;
+
+
+#begin {
+  height: 527px;
+  width: 1500px
 }
-table, th, td {
-    text-align: center;
-    border: 1px solid black;
+
+#selfContainer{
+ padding-right: 717px;
+ padding-left: 17px;
 }
+
+#selfdivide{
+  margin-bottom: 12px;
+}
+
+#selfRecomendation{
+  padding: 11px 12px;
+}
+
+.headerDivider {
+     border-left:2px groove #737b83;
+     height:80px;
+     margin: 0px 9px;
+     top:10px;
+}
+
+#gridOne{
+  width: 100%
+}
+
 
 #result {
   height: 100px;

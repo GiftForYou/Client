@@ -4,23 +4,102 @@
 <head>
   <title>HackCrome</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./Semantic/semantic.css">
   <script src="popup.js"></script>
 </head>
 
-<body>
-  <div>
-    <p>
-      Welcom HackChrome.
-    </p>
-    <p id="myResult">
-    </p>
-    <br/>
-    <button id="analize" type="button">Analize</button>
-    <br/>
-    <br/>
-    <section id="showRecomendation"></section>
-    <button id="recomendation" type="button">Show Recomendation</button>
+<body id="begin">
+  <div id="selfContainer">
+    <div class="ui secondary menu">
+        <span class="item">
+          Welcome HackCrome
+        </span>
+    </div>
+    <div class="ui grid">
+      <div class="three wide column" >
+        <div class="ui vertical buttons" id="gridOne">
+          <button class="ui button">Analize</button>
+          <button class="ui button" id="selfRecomendation">Recomendation</button>
+        </div>
+      </div>
+      <div class="one wide column">
+        <div class="headerDivider"></div>
+      </div>
+      <div class="twelve wide column">
+        <div id="selfdivide">
+          <table class="ui orange celled table">
+            <thead>
+              <tr>
+                <th>Likes</th>
+                <th>Percentase</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>No Name Specified</td>
+                <td>None</td>
+              </tr>
+              <tr class="positive">
+                <td>Jimmy</td>
+                <td>Approved</td>
+              </tr>
+              <tr>
+                <td>Jamie</td>
+                <td>Requires call</td>
+              </tr>
+              <tr class="warning">
+                <td>Jill</td>
+                <td>Unknown</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div self"selfdivide">
+          <div class="ui three cards">
+            <a class="teal card">
+              <div class="image">
+                <img src="Semantic/assets/images/kristy.png">
+              </div>
+              <div class="extra">
+                Description
+              </div>
+            </a>
+            <a class="teal card">
+              <div class="image">
+                <img src="Semantic/assets/images/kristy.png">
+              </div>
+              <div class="extra">
+                Description
+              </div>
+            </a>
+            <a class="teal card">
+              <div class="image">
+                <img src="Semantic/assets/images/kristy.png">
+              </div>
+              <div class="extra">
+                Description
+              </div>
+            </a>
+            <a class="teal card">
+              <div class="image">
+                <img src="Semantic/assets/images/kristy.png">
+              </div>
+              <div class="extra">
+                Description
+              </div>
+            </a>
+            <a class="teal card">
+              <div class="image">
+                <img src="Semantic/assets/images/kristy.png">
+              </div>
+              <div class="extra">
+                Description
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 
