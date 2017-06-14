@@ -25,7 +25,7 @@ class App extends Component {
         });
       }else if(response.text==="start"){
         let temp=[];
-        for (var i = 0; i < document.getElementById('pagelet_timeline_medley_likes').getElementsByClassName('_3sz').length; i++) {
+        for (var i = 1; i < document.getElementById('pagelet_timeline_medley_likes').getElementsByClassName('_3sz').length; i++) {
           var obj={};
           obj.name=document.getElementById('pagelet_timeline_medley_likes').getElementsByClassName('_3sz')[i].innerText;
           obj.url=document.getElementById('pagelet_timeline_medley_likes').getElementsByClassName('_3c_')[i].getAttribute("href");

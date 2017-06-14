@@ -24,6 +24,7 @@ class App extends Component {
     this.handleClickRecomend=this.handleClickRecomend.bind(this);
   }
   handleClickAnalize(){
+    console.log('click')
     chrome.tabs.getSelected(null,function (tab) {
       chrome.tabs.sendMessage(tab.id, {text: 'user'});
       setTimeout(function(){
@@ -83,7 +84,7 @@ class App extends Component {
         author: 'Hans',
       },
     ];
-    console.log('apa', tilesData.length);
+    console.log(this.props.recomendation);
     return (
       <div style={forApp}>
         <AppBar
@@ -94,42 +95,32 @@ class App extends Component {
           <div style={paper}>
             <Paper >
               <Menu >
-                <MenuItem style={{width: 205}} primaryText="Analize" />
+                <MenuItem style={{width: 205}} primaryText="Analize" onClick={()=>this.handleClickAnalize()}/>
                 <Divider style={{width: 205}}/>
-                <MenuItem style={{width: 205}} primaryText="Show Recomendation"/>
+                <MenuItem style={{width: 205}} primaryText="Show Recomendation" onClick={()=>this.handleClickRecomend()}/>
               </Menu>
             </Paper>
           </div>
           <div style={{width: '100%'}}>
             <div style={{marginBottom: 17}}>
-              <Table style={{width: '37em'}}>
-                <TableHeader displaySelectAll={false} enableSelectAll={false} >
+              <Table>
+                <TableHeader style={{backgroundColor: '#008b8b'}} adjustForCheckbox={false} displaySelectAll={false} enableSelectAll={false} >
                   <TableRow>
-                    <TableHeaderColumn>Category</TableHeaderColumn>
-                    <TableHeaderColumn>Count</TableHeaderColumn>
+                    <TableHeaderColumn style={{textAlign:'left', color: 'white'}}>Category</TableHeaderColumn>
+                    <TableHeaderColumn style={{textAlign:'left', color: 'white'}}>Count</TableHeaderColumn>
+                    <TableHeaderColumn style={{textAlign:'left', color: 'white'}} colSpan="3">Detail</TableHeaderColumn>
                   </TableRow>
                 </TableHeader>
                 <TableBody deselectOnClickaway={false} displayRowCheckbox={false} stripedRows={true}>
-                  <TableRow>
-                    <TableRowColumn>John Smith</TableRowColumn>
-                    <TableRowColumn>Employed</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>Randal White</TableRowColumn>
-                    <TableRowColumn>Unemployed</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>Stephanie Sanders</TableRowColumn>
-                    <TableRowColumn>Employed</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>Steve Brown</TableRowColumn>
-                    <TableRowColumn>Employed</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>Christopher Nolan</TableRowColumn>
-                    <TableRowColumn>Unemployed</TableRowColumn>
-                  </TableRow>
+                  {this.props.doc_detail.map((category, index)=>{
+                    return(
+                      <TableRow key={index}>
+                        <TableRowColumn>{category.name}</TableRowColumn>
+                        <TableRowColumn>{category.count}</TableRowColumn>
+                        <TableRowColumn colSpan="3" style={{whiteSpace: 'normal',wordWrap: 'break-word'}}>{category.data}</TableRowColumn>
+                      </TableRow>
+                    )
+                  })}
                 </TableBody>
               </Table>
             </div>

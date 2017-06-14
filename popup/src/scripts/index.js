@@ -6,8 +6,12 @@ import {Store} from 'react-chrome-redux';
 import {style} from './css/App.style'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import App from './components/app/App';
 
+injectTapEventPlugin();
 
 const proxyStore =  new Store({
   portName: 'gift'
