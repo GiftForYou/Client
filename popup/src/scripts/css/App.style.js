@@ -23,3 +23,16 @@ export const paper={
   width: 205,
   height: 126
 }
+
+export const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+  },
+  gridList: {
+    width: 455,
+    height: 450,
+    overflowY: 'auto',
+  },
+}
