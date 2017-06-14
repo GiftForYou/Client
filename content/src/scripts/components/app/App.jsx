@@ -63,6 +63,8 @@ class App extends Component {
           type :'SET_RECOMEND',
           value : response.value
         });
+      }else if (response.text==="newtab") {
+        window.open(response.value,'_blank');
       }
     })
   }

@@ -51,7 +51,6 @@ class App extends Component {
           url: 'http://servergift-dev.ap-southeast-1.elasticbeanstalk.com/recomendation',
           data: { data: JSON.stringify(temp) },
         }).then(function (response) {
-          console.log('yeah333');
           console.log(response);
           chrome.tabs.getSelected(null,function (tab) {
             chrome.tabs.sendMessage(tab.id, {text: 'show',value:response});
@@ -59,35 +58,16 @@ class App extends Component {
         })
   }
 
+  handleNewTab(parse) {
+    console.log('jalan', parse);
+    chrome.tabs.getSelected(null,function (tab) {
+      chrome.tabs.sendMessage(tab.id, {text: 'newtab',value:parse});
+    });
+  }
+
   render() {
-    const tilesData = [
-      {
-        img: 'https://s2.bukalapak.com/img/2021773/large/image-52045417-480x272.jpg',
-        title: 'Breakfast',
-        author: 'jill111',
-      },
-      {
-        img: 'https://s2.bukalapak.com/img/2021773/large/image-52045417-480x272.jpg',
-        title: 'Tasty burger',
-        author: 'pashminu',
-      },
-      {
-        img: 'https://s2.bukalapak.com/img/2021773/large/image-52045417-480x272.jpg',
-        title: 'Camera',
-        author: 'Danson67',
-      },
-      {
-        img: 'https://s2.bukalapak.com/img/2021773/large/image-52045417-480x272.jpg',
-        title: 'Morning',
-        author: 'fancycrave1',
-      },
-      {
-        img: 'https://s2.bukalapak.com/img/2021773/large/image-52045417-480x272.jpg',
-        title: 'Hats',
-        author: 'Hans',
-      },
-    ];
-    console.log(this.props.recomendation);
+    console.log('reco ',this.props.doc_recomendation);
+    let recomendation = this.props.doc_recomendation
     return (
       <div style={forApp}>
         <AppBar
@@ -132,16 +112,18 @@ class App extends Component {
                 cellHeight={180}
                 style={styles.gridList}
               >
-                {tilesData.map((tile, index) => (
+                { recomendation === undefined ? <span></span> :
+                  recomendation.hasil.map((data, index) => (
                   <GridTile
                     key={index}
-                    title={tile.title}
-                    subtitle={<span>by <b>{tile.author}</b></span>}
-                    actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                    title={data.name}
+                    subtitle={<span>by <b>{data.seller_username}</b></span>}
+                    actionIcon={<IconButton onClick={()=> this.handleNewTab(data.Url_lapak)}><StarBorder color="white" /></IconButton>}
                   >
-                    <img src={tile.img} />
+                    <img src={data.Images[0]} />
                   </GridTile>
-                ))}
+                ))
+              }
               </GridList>
             </div>
           </div>
@@ -157,7 +139,7 @@ const mapStateToProps = (state)=>{
   return{
     doc_user : state.doc.doc_user,
     doc_detail: state.doc.doc_detail,
-    doc_recomendation : state.doc.doc_recomendation
+    doc_recomendation : state.doc.doc_recomendation.data
   };
 }
 
