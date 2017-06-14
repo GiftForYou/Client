@@ -25,8 +25,11 @@ class App extends Component {
     super(props);
     this.state = {
       completed: 0,
-      recomend : true
+      recomend : false,
+      timeAnalize: 0,
+      analize : false
     };
+
     this.handleClickRecomend=this.handleClickRecomend.bind(this);
   }
   handleClickAnalize(){
@@ -48,8 +51,6 @@ class App extends Component {
   handleClickRecomend (){
         let temp={};
         temp.recomendation = this.props.doc_detail;
-        console.log(JSON.stringify(temp));
-        // axios.post('http://servergift-dev.ap-southeast-1.elasticbeanstalk.com/recomendation', JSON.stringify(temp))
         axios({
           method: 'post',
           url: 'http://servergift-dev.ap-southeast-1.elasticbeanstalk.com/recomendation',
@@ -67,11 +68,21 @@ class App extends Component {
     });
   }
 
+  analisa(timeAnalize){
+    if (timeAnalize > 100) {
+      this.setState({timeAnalize: 100, analize: false});
+    } else {
+      this.setState({timeAnalize: timeAnalize, analize: true});
+      const dif = Math.floor(Math.random() * (15 - 5) + 5);
+      this.timer = setTimeout(() => this.analisa(timeAnalize + dif), 1100)
+    }
+  }
+
   progress(completed) {
-    if (completed > 100) {
+     if (completed > 100) {
       this.setState({completed: 100});
     } else {
-      this.setState({recomend: false})
+      this.setState({recomend: true})
       this.setState({completed});
       const diff = Math.floor(Math.random() * (35 - 20) + 20);
       this.timer = setTimeout(() => this.progress(completed + diff), 900);
@@ -80,7 +91,6 @@ class App extends Component {
 
   render() {
     let recomendation = this.props.doc_recomendation
-    console.log(recomendation)
     return (
       <div style={forApp}>
         <AppBar
@@ -92,7 +102,7 @@ class App extends Component {
           <div style={paper}>
             <Paper >
               <Menu >
-                <MenuItem style={{width: 205}} primaryText="Analisa" onClick={()=>this.handleClickAnalize()}/>
+                <MenuItem style={{width: 205}} primaryText="Analisa" onClick={()=> {this.handleClickAnalize(); this.analisa(5)}}/>
                 <Divider style={{width: 205}}/>
                 <MenuItem style={{width: 205}} primaryText="Rekomendasi" onClick={()=> {this.handleClickRecomend(); this.progress(5)}}/>
               </Menu>
@@ -100,36 +110,44 @@ class App extends Component {
           </div>
           <div style={{width: '100%'}}>
             <div style={{marginBottom: 17, marginTop: 5}}>
-              <Table>
-                <TableHeader style={{backgroundColor: '#008b8b'}} adjustForCheckbox={false} displaySelectAll={false} enableSelectAll={false} >
-                  <TableRow>
-                    <TableHeaderColumn style={{textAlign:'left', color: 'white'}}>Kategori</TableHeaderColumn>
-                    <TableHeaderColumn style={{textAlign:'left', color: 'white'}}>Persentase</TableHeaderColumn>
-                    <TableHeaderColumn style={{textAlign:'left', color: 'white'}} colSpan="3">Detail</TableHeaderColumn>
-                  </TableRow>
-                </TableHeader>
-                <TableBody deselectOnClickaway={false} displayRowCheckbox={false} stripedRows={true}>
-                  {this.props.doc_detail.map((category, index)=>{
-                    return(
-                      <TableRow key={index}>
-                        <TableRowColumn>{category.name}</TableRowColumn>
-                        <TableRowColumn>{category.count}</TableRowColumn>
-                        <TableRowColumn colSpan="3" style={{whiteSpace: 'normal',wordWrap: 'break-word'}}>{category.data}</TableRowColumn>
+              {this.state.analize === false && this.props.doc_detail.length === 0 ? <span></span>
+                :
+                this.state.timeAnalize < 100 ?
+                <div style={styles.sample}>
+                  <img style={{width:'10rem', height: '10rem'}} src="https://media.giphy.com/media/Q5oetB8Q0xoM8/giphy.gif"></img>
+                </div>
+                  :
+                  <Table>
+                    <TableHeader style={{backgroundColor: '#008b8b'}} adjustForCheckbox={false} displaySelectAll={false} enableSelectAll={false} >
+                      <TableRow>
+                        <TableHeaderColumn style={{textAlign:'left', color: 'white'}}>Kategori</TableHeaderColumn>
+                        <TableHeaderColumn style={{textAlign:'left', color: 'white'}}>Persentase</TableHeaderColumn>
+                        <TableHeaderColumn style={{textAlign:'left', color: 'white'}} colSpan="3">Detail</TableHeaderColumn>
                       </TableRow>
-                    )
-                  })}
-                </TableBody>
-              </Table>
+                    </TableHeader>
+                    <TableBody deselectOnClickaway={false} displayRowCheckbox={false} stripedRows={true}>
+                      {this.props.doc_detail.map((category, index)=>{
+                        return(
+                          <TableRow key={index}>
+                            <TableRowColumn>{category.name}</TableRowColumn>
+                            <TableRowColumn>{category.count}</TableRowColumn>
+                            <TableRowColumn colSpan="3" style={{whiteSpace: 'normal',wordWrap: 'break-word'}}>{category.data}</TableRowColumn>
+                          </TableRow>
+                        )
+                      })}
+                    </TableBody>
+                  </Table>
+              }
             </div>
-            {this.state.completed > 0 ? <Divider style={{marginBottom: 17}}/> : <span></span>}
-            { this.state.recomend === true ?
+            {this.state.timeAnalize > 100 ? <Divider style={{marginBottom: 17}}/> : <span></span>}
+            { this.state.recomend === false ?
               <span></span>
               :
               this.state.completed < 100 ?
               <div style={styles.sample}>
                 <img style={{width:'10rem', height: '10rem'}} src="https://media.giphy.com/media/Q5oetB8Q0xoM8/giphy.gif"></img>
               </div>
-                    :
+              :
               recomendation.hasil.length === 0 ? <div style={styles.sample}>
                 <img style={{width:'25rem', height: '17rem'}} src="https://cdn.dribbble.com/users/463734/screenshots/2016807/404_error_shot.png"></img>
               </div>:
