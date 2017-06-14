@@ -10,7 +10,7 @@
  padding-left: 17px;
 }
 
-#selfdivide{
+.selfdivide{
   margin-bottom: 12px;
 }
 
@@ -30,7 +30,7 @@
 }
 
 
-#result {
+/*#result {
   height: 100px;
   width: 800px;
-}
+}*/

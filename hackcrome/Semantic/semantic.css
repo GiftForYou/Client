@@ -25337,7 +25337,7 @@ Floated Menu / Item
 .ui.card > .image > img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 10rem  ;
   border-radius: inherit;
 }
 
