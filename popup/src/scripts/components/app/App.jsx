@@ -115,10 +115,10 @@ class App extends Component {
                 { recomendation === undefined ? <span></span> :
                   recomendation.hasil.map((data, index) => (
                   <GridTile
+                    onClick={()=> this.handleNewTab(data.Url_lapak)}
                     key={index}
                     title={data.name}
                     subtitle={<span>by <b>{data.seller_username}</b></span>}
-                    actionIcon={<IconButton onClick={()=> this.handleNewTab(data.Url_lapak)}><StarBorder color="white" /></IconButton>}
                   >
                     <img src={data.Images[0]} />
                   </GridTile>
