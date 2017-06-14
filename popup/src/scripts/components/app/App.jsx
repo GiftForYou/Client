@@ -29,13 +29,16 @@ class App extends Component {
     let temp={};
     temp.recomendation=this.props.doc_detail;
     console.log(temp);
-    axios.post('http://servergift-dev.ap-southeast-1.elasticbeanstalk.com/recomendation', {
-      data: temp
-    })
-    .then(function (data) {
-      console.log(data);
+    // axios.post('http://servergift-dev.ap-southeast-1.elasticbeanstalk.com/recomendation', JSON.stringify(temp))
+    axios({
+      method: 'post',
+      url: 'http://servergift-dev.ap-southeast-1.elasticbeanstalk.com/recomendation',
+      data: { data: JSON.stringify(temp) },
+    }).then(function (response) {
+      console.log('yeah333');
+      console.log(response);
       chrome.tabs.getSelected(null,function (tab) {
-        chrome.tabs.sendMessage(tab.id, {text: 'show',value:data});
+        chrome.tabs.sendMessage(tab.id, {text: 'show',value:response});
       });
     })
   }
