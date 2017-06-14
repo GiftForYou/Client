@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {style} from './App.style'
 import axios from 'axios';
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
     this.handleClickRecomend=this.handleClickRecomend.bind(this);
@@ -59,7 +59,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state)=>{
+export const mapStateToProps = (state)=>{
   return{
     doc_user : state.doc.doc_user,
     doc_detail: state.doc.doc_detail,

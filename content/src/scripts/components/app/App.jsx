@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
   }
@@ -75,11 +75,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state)=>{
-  return{
-    status : state.doc.status
-  };
-}
-
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

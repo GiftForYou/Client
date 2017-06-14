@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Content Test] overAll  1`] = `<div />`;
+
+exports[`[Content Test] props  1`] = `Object {}`;
+
+exports[`[Content Test] store  1`] = `Object {}`;
+
+exports[`[Content Test] type  1`] = `"div"`;
