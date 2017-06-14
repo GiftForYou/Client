@@ -34,7 +34,7 @@ export const styles = {
     width: 455,
     height: 450,
     overflowY: 'auto',
-    justifyContent: 'center'
+    justifyContent: 'flex-start'
   },
   sample: {
     display: 'flex',

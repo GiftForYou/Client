@@ -80,7 +80,7 @@ class App extends Component {
 
   progress(completed) {
      if (completed > 100) {
-      this.setState({completed: 100});
+      this.setState({completed: 100, recomend: false});
     } else {
       this.setState({recomend: true})
       this.setState({completed});
@@ -91,6 +91,8 @@ class App extends Component {
 
   render() {
     let recomendation = this.props.doc_recomendation
+    console.log(recomendation);
+    console.log(this.state);
     return (
       <div style={forApp}>
         <AppBar
@@ -140,34 +142,38 @@ class App extends Component {
               }
             </div>
             {this.state.timeAnalize > 100 ? <Divider style={{marginBottom: 17}}/> : <span></span>}
-            { this.state.recomend === false ?
+            { this.state.recomend === false && recomendation === undefined ?
               <span></span>
               :
-              this.state.completed < 100 ?
-              <div style={styles.sample}>
-                <img style={{width:'10rem', height: '10rem'}} src="https://media.giphy.com/media/Q5oetB8Q0xoM8/giphy.gif"></img>
-              </div>
-              :
-              recomendation.hasil.length === 0 ? <div style={styles.sample}>
-                <img style={{width:'25rem', height: '17rem'}} src="https://cdn.dribbble.com/users/463734/screenshots/2016807/404_error_shot.png"></img>
-              </div>:
-                    <div style={styles.root}>
-                      <GridList
-                        cellHeight={180}
-                        style={styles.gridList}
-                      >
-                        recomendation.hasil.map((data, index) => (
-                        <GridTile
-                          onClick={()=> this.handleNewTab(data.Url_lapak)}
-                          key={index}
-                          title={data.name}
-                          subtitle={<span>by <b>{data.seller_username}</b></span>}
-                        >
-                          <img src={data.Images[0]} />
-                        </GridTile>
-                        ))
-                      </GridList>
-                    </div>
+                this.state.completed < 100 ?
+                <div style={styles.sample}>
+                  <img style={{width:'10rem', height: '10rem'}} src="https://media.giphy.com/media/Q5oetB8Q0xoM8/giphy.gif"></img>
+                </div>
+                :
+                recomendation.hasil.length === 0 ?
+                  <div style={styles.sample}>
+                    <img style={{width:'25rem', height: '17rem'}} src="https://cdn.dribbble.com/users/463734/screenshots/2016807/404_error_shot.png"></img>
+                  </div>
+                :
+                  <div style={styles.root}>
+                    <GridList
+                      cellHeight={180}
+                      style={styles.gridList}
+                    >
+                  {
+                    recomendation.hasil.map((data, index) => (
+                    <GridTile
+                      onClick={()=> this.handleNewTab(data.Url_lapak)}
+                      key={index}
+                      title={data.name}
+                      subtitle={<span>by <b>{data.seller_username}</b></span>}
+                    >
+                      <img src={data.Images[0]} />
+                    </GridTile>
+                    ))
+                  }
+                    </GridList>
+                  </div>
             }
           </div>
 
