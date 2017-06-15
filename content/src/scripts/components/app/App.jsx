@@ -77,11 +77,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state)=>{
-  return{
-    status : state.doc.status
-  };
-}
 
 
-export default connect(mapStateToProps)(App);
+export default connect()(App);

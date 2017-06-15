@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Event Test] SET_DOC_DETAIL 1`] = `
+Object {
+  "doc_detail": Array [],
+  "doc_recomendation": Array [],
+  "doc_user": Object {},
+}
+`;
+
+exports[`[Event Test] SET_DOC_USER 1`] = `
+Object {
+  "doc_detail": Array [],
+  "doc_recomendation": Array [],
+  "doc_user": Object {},
+}
+`;
+
+exports[`[Event Test] SET_RECOMEND 1`] = `
+Object {
+  "doc_detail": Array [],
+  "doc_recomendation": Array [],
+  "doc_user": Object {},
+}
+`;
+
+exports[`[Event Test] doc empty 1`] = `
+Object {
+  "doc_detail": Array [],
+  "doc_recomendation": Array [],
+  "doc_user": Object {},
+}
+`;
+
+exports[`[Event Test] initialState have doc_detail 1`] = `Array []`;
+
+exports[`[Event Test] initialState have doc_recomendation 1`] = `Array []`;
+
+exports[`[Event Test] initialState have doc_user 1`] = `Object {}`;
+
+exports[`[Event Test] overAll initialState 1`] = `
+Object {
+  "doc_detail": Array [],
+  "doc_recomendation": Array [],
+  "doc_user": Object {},
+}
+`;

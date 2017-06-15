@@ -4,9 +4,8 @@
   "private": true,
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
-  "author": "Tyler Shaddix",
   "dependencies": {
     "axios": "^0.16.2",
     "fetch": "^1.1.0",
@@ -17,8 +16,7 @@
     "react-dom": "^15.5.0",
     "react-redux": "^4.0.0",
     "react-tap-event-plugin": "^2.0.1",
-    "redux": "^3.0.4",
-    "semantic-ui-css": "^2.2.10"
+    "redux": "^3.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -32,10 +30,11 @@
     "gulp-util": "^3.0.7",
     "icons-loader": "0.0.6",
     "rimraf": "^2.5.0",
-    "semantic-ui": "^2.2.10",
-    "semantic-ui-react": "^0.68.5",
     "style-loader": "^0.18.2",
     "svg-inline-loader": "^0.7.1",
+    "babel-jest": "^20.0.3",
+    "jest": "^20.0.4",
+    "react-test-renderer": "^15.5.4",
     "webpack": "^2.6.0"
   }
 }
