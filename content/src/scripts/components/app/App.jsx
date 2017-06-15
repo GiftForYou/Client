@@ -10,7 +10,6 @@ class App extends Component {
     var self=this;
     chrome.runtime.onMessage.addListener(function(response,sender,sendResponse){
       if (response.text==="user") {
-        console.log('user');
         let temp=[],obj={};
         obj.name=document.getElementById('fb-timeline-cover-name').innerText;
         for (var i = 0; i < document.getElementById('intro_container_id').getElementsByClassName('_50f3').length; i++) {
@@ -37,6 +36,10 @@ class App extends Component {
           type :'SET_DOC_DETAIL',
           value : temp
         });
+        self.props.dispatch({
+          type :'SET_STATUS',
+          value : true
+        });
         for (var i = 0; i < temp.length; i++) {
           let currI=i;
           fetch(temp[i].url,{ credentials: "include" }).then(function(response){
@@ -48,9 +51,10 @@ class App extends Component {
               if (data[0]!=='<') {
                 var ind=data.indexOf("<");
                 data=data.slice(0,ind);
-                arr.push(data);
+                arr.push(data.replace(/[^a-zA-Z ]/g, ''));
               }
             })
+            console.log(arr);
             temp[currI].data=arr;
             self.props.dispatch({
               type :'SET_DOC_DETAIL',
