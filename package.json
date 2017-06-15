@@ -1,0 +1,33 @@
+{
+  "name": "rcr-example",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "fetch": "^1.1.0",
+    "react": "^15.5.0",
+    "react-chrome-redux": "0.0.7",
+    "react-dom": "^15.5.0",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.7",
+    "jest": "^20.0.4",
+    "react-test-renderer": "^15.5.4",
+    "rimraf": "^2.5.0",
+    "webpack": "^2.6.0"
+  }
+}
